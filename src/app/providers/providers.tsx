@@ -1,10 +1,10 @@
 import type { FC, PropsWithChildren } from "react"
+import { AntdProvider } from "./antd.provider"
 
 const Providers: FC<PropsWithChildren> = ({ children }) => {
-
 	return (
 		<>
-			{children}
+			<AntdProvider>{children}</AntdProvider>
 		</>
 	)
 }
