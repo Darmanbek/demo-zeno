@@ -1,4 +1,5 @@
 import { App, ConfigProvider, theme } from "antd"
+import { css, cx } from "antd-style"
 import { useMemo, type FC, type ReactNode } from "react"
 import { THEME, THEME_DARK, THEME_LIGHT } from "src/shared/constants"
 import { useToken } from "src/shared/hooks"
@@ -27,10 +28,13 @@ const AntdProvider: FC<AntdProviderProps> = ({ children }) => {
 				form={{
 					requiredMark: false,
 				}}
+				typography={{
+					style: {
+						marginBottom: 0,
+					},
+				}}
 			>
-				<App>
-					{children}
-				</App>
+				<App>{children}</App>
 			</ConfigProvider>
 		</>
 	)
