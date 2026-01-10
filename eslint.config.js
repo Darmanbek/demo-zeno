@@ -22,6 +22,8 @@ export default tseslint.config([
 		},
 		plugins: {
 			react,
+			"react-hooks": reactHooks,
+			"react-refresh": reactRefresh,
 		},
 		rules: {
 			...reactHooks.configs.recommended.rules,
@@ -37,7 +39,7 @@ export default tseslint.config([
 			"no-console": "warn",
 			"@typescript-eslint/no-unused-vars": [
 				"error",
-				{ argsIgnorePattern: "^_",  varsIgnorePattern: '^_', },
+				{ argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
 			],
 			"react/jsx-key": ["error"],
 			"react/jsx-boolean-value": ["error", "always"],

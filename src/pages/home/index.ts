@@ -1,1 +1,1 @@
-export { Home as HomePage } from "./ui/home.tsx"
+export * from "./ui/home.page.tsx"

@@ -1,18 +1,20 @@
 import { Layout, Typography } from "antd"
-import { css, cx } from "antd-style"
 import type { FC } from "react"
+import { useToken } from "src/shared/hooks"
 
 const { Footer } = Layout
 
 const FooterLayout: FC = () => {
+	const { token } = useToken()
+	
 	return (
 		<>
 			<Footer
-				className={cx(css`
-					padding: var(--ant-padding) 0;
-					background-color: var(--ant-color-bg-container);
-					box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-				`)}
+				style={{
+					padding: `${token.padding}px 0`,
+					backgroundColor: token.colorBgContainer,
+					boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
+				}}
 			>
 				<Typography.Paragraph
 					style={{ textAlign: "center", fontSize: 13 }}
@@ -20,9 +22,7 @@ const FooterLayout: FC = () => {
 				>
 					Copyright © {new Date().getFullYear()}{" "}
 					<span
-						className={cx(css`
-							color: var(--ant-color-text);
-						`)}
+						style={{ color: token.colorText }}
 					>
 						Zeno
 					</span>
