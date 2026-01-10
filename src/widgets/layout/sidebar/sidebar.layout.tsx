@@ -7,17 +7,17 @@ import { SidebarContainer } from "./sidebar.container"
 
 const SidebarLayout: FC = () => {
 	const { token } = useToken()
-	const isDark = useThemeStore(state => state.isDark)
-	const isCollapsed = useMenuStore(state => state.isCollapsed)
-	
+	const isDark = useThemeStore((state) => state.isDark)
+	const isCollapsed = useMenuStore((state) => state.isCollapsed)
+
 	const menuItems = useMemo(() => {
 		if (isCollapsed) {
-			return menuData?.filter(el => el?.type !== "group")
+			return menuData?.filter((el) => el?.type !== "group")
 		}
-		
+
 		return menuData
 	}, [isCollapsed])
-	
+
 	return (
 		<>
 			<SidebarContainer>
@@ -56,29 +56,35 @@ const SidebarLayout: FC = () => {
 						components: {
 							Menu: {
 								groupTitleColor: isDark ? "rgba(255,255,255,0.5)" : "#61748f",
-								itemColor: isDark ? "rgba(255,255,255,0.5)" : "#61748f"
-							}
-						}
+								itemColor: isDark ? "rgba(255,255,255,0.5)" : "#61748f",
+							},
+						},
 					}}
 				>
-					<Menu inlineCollapsed={isCollapsed} items={menuItems} mode={"inline"} style={{
-						paddingInline: 6,
-						overflowX: "hidden",
-						overflowY: "auto",
-						height: "calc(100vh - 68px)",
-						scrollbarWidth: "thin",
-						scrollbarColor: `${token.colorBorder} transparent`,
-						paddingBottom: token.paddingLG * 2,
-					}} styles={{
-						itemTitle: {
-							fontSize: 11,
-							fontWeight: 500,
-							letterSpacing: 0.8,
-							textTransform: "uppercase",
-							opacity: 0.6,
-							padding: `${token.padding}px ${token.paddingLG}px`,
-						},
-					}} />
+					<Menu
+						inlineCollapsed={isCollapsed}
+						items={menuItems}
+						mode={"inline"}
+						style={{
+							paddingInline: 6,
+							overflowX: "hidden",
+							overflowY: "auto",
+							height: "calc(100vh - 68px)",
+							scrollbarWidth: "thin",
+							scrollbarColor: `${token.colorBorder} transparent`,
+							paddingBottom: token.paddingLG * 2,
+						}}
+						styles={{
+							itemTitle: {
+								fontSize: 11,
+								fontWeight: 500,
+								letterSpacing: 0.8,
+								textTransform: "uppercase",
+								opacity: 0.6,
+								padding: `${token.padding}px ${token.paddingLG}px`,
+							},
+						}}
+					/>
 				</ConfigProvider>
 			</SidebarContainer>
 		</>

@@ -13,8 +13,6 @@ export default tseslint.config([
 		extends: [
 			js.configs.recommended,
 			tseslint.configs.recommended,
-			reactHooks.configs["recommended-latest"],
-			reactRefresh.configs.vite,
 		],
 		languageOptions: {
 			ecmaVersion: 2020,
@@ -27,14 +25,8 @@ export default tseslint.config([
 		},
 		rules: {
 			...reactHooks.configs.recommended.rules,
-			"react-refresh/only-export-components": [
-				"warn",
-				{ allowConstantExport: true },
-			],
-			"react/jsx-curly-brace-presence": [
-				"error",
-				{ props: "always", children: "ignore" },
-			],
+			"react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+			"react/jsx-curly-brace-presence": ["error", { props: "always", children: "ignore" }],
 			"no-tabs": 0,
 			"no-console": "warn",
 			"@typescript-eslint/no-unused-vars": [
