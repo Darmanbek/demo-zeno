@@ -3,6 +3,7 @@ import { type FC, useMemo } from "react"
 import { menuData } from "src/shared/data"
 import { useToken } from "src/shared/hooks"
 import { useMenuStore, useThemeStore } from "src/shared/store"
+import { DotOutlined } from "src/shared/ui/icons"
 import { SidebarContainer } from "./sidebar.container"
 
 const SidebarLayout: FC = () => {
@@ -12,7 +13,19 @@ const SidebarLayout: FC = () => {
 
 	const menuItems = useMemo(() => {
 		if (isCollapsed) {
-			return menuData?.filter((el) => el?.type !== "group")
+			return menuData?.map((el) => {
+				if (el?.type === "group") {
+					return {
+						...el,
+						label: (
+							<Flex justify={"center"}>
+								<DotOutlined />
+							</Flex>
+						),
+					}
+				}
+				return el
+			})
 		}
 
 		return menuData

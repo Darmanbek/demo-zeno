@@ -1,5 +1,6 @@
 import { createRouter } from "@tanstack/react-router"
 import { routeTree } from "src/routeTree.gen.ts"
+import { NotFoundBoundary } from "src/widgets/router-boundary"
 
 export const router = createRouter({
 	routeTree,
@@ -10,7 +11,7 @@ export const router = createRouter({
 	defaultPreloadStaleTime: 0,
 	scrollRestoration: true,
 	// defaultPendingComponent: () => <Loader loading={true} />,
-	// defaultNotFoundComponent: NotFound,
+	defaultNotFoundComponent: NotFoundBoundary,
 	// defaultErrorComponent: ErrorBoundary,
 })
 

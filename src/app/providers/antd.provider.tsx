@@ -11,9 +11,9 @@ interface AntdProviderProps {
 const AntdProvider: FC<AntdProviderProps> = ({ children }) => {
 	const { token } = useToken()
 	const isDark = useThemeStore((state) => state.isDark)
-	
-	const themeToken = useMemo(() => (isDark ? THEME_DARK : THEME_LIGHT), [])
-	
+
+	const themeToken = useMemo(() => (isDark ? THEME_DARK : THEME_LIGHT), [isDark])
+
 	return (
 		<>
 			<ConfigProvider
@@ -51,7 +51,16 @@ const AntdProvider: FC<AntdProviderProps> = ({ children }) => {
 					},
 				}}
 			>
-				<App>{children}</App>
+				<App
+					style={{
+						minHeight: "100vh",
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "flex-start",
+					}}
+				>
+					{children}
+				</App>
 			</ConfigProvider>
 		</>
 	)

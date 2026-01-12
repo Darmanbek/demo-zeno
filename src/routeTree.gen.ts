@@ -15,6 +15,8 @@ import { Route as AuthAuthRouteImport } from "./routes/auth/_auth"
 import { Route as AuthAuthIndexRouteImport } from "./routes/auth/_auth/index"
 import { Route as AuthAuthRegisterRouteImport } from "./routes/auth/_auth/register"
 import { Route as AuthAuthLoginRouteImport } from "./routes/auth/_auth/login"
+import { Route as LayoutDashboardSalesRouteImport } from "./routes/_layout/dashboard/sales"
+import { Route as LayoutDashboardAnalyticsRouteImport } from "./routes/_layout/dashboard/analytics"
 
 const LayoutRoute = LayoutRouteImport.update({
   id: "/_layout",
@@ -45,16 +47,31 @@ const AuthAuthLoginRoute = AuthAuthLoginRouteImport.update({
   path: "/login",
   getParentRoute: () => AuthAuthRoute,
 } as any)
+const LayoutDashboardSalesRoute = LayoutDashboardSalesRouteImport.update({
+  id: "/dashboard/sales",
+  path: "/dashboard/sales",
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutDashboardAnalyticsRoute =
+  LayoutDashboardAnalyticsRouteImport.update({
+    id: "/dashboard/analytics",
+    path: "/dashboard/analytics",
+    getParentRoute: () => LayoutRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   "/auth": typeof AuthAuthRouteWithChildren
   "/": typeof LayoutIndexRoute
+  "/dashboard/analytics": typeof LayoutDashboardAnalyticsRoute
+  "/dashboard/sales": typeof LayoutDashboardSalesRoute
   "/auth/login": typeof AuthAuthLoginRoute
   "/auth/register": typeof AuthAuthRegisterRoute
   "/auth/": typeof AuthAuthIndexRoute
 }
 export interface FileRoutesByTo {
   "/": typeof LayoutIndexRoute
+  "/dashboard/analytics": typeof LayoutDashboardAnalyticsRoute
+  "/dashboard/sales": typeof LayoutDashboardSalesRoute
   "/auth/login": typeof AuthAuthLoginRoute
   "/auth/register": typeof AuthAuthRegisterRoute
   "/auth": typeof AuthAuthIndexRoute
@@ -64,20 +81,37 @@ export interface FileRoutesById {
   "/_layout": typeof LayoutRouteWithChildren
   "/auth/_auth": typeof AuthAuthRouteWithChildren
   "/_layout/": typeof LayoutIndexRoute
+  "/_layout/dashboard/analytics": typeof LayoutDashboardAnalyticsRoute
+  "/_layout/dashboard/sales": typeof LayoutDashboardSalesRoute
   "/auth/_auth/login": typeof AuthAuthLoginRoute
   "/auth/_auth/register": typeof AuthAuthRegisterRoute
   "/auth/_auth/": typeof AuthAuthIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: "/auth" | "/" | "/auth/login" | "/auth/register" | "/auth/"
+  fullPaths:
+    | "/auth"
+    | "/"
+    | "/dashboard/analytics"
+    | "/dashboard/sales"
+    | "/auth/login"
+    | "/auth/register"
+    | "/auth/"
   fileRoutesByTo: FileRoutesByTo
-  to: "/" | "/auth/login" | "/auth/register" | "/auth"
+  to:
+    | "/"
+    | "/dashboard/analytics"
+    | "/dashboard/sales"
+    | "/auth/login"
+    | "/auth/register"
+    | "/auth"
   id:
     | "__root__"
     | "/_layout"
     | "/auth/_auth"
     | "/_layout/"
+    | "/_layout/dashboard/analytics"
+    | "/_layout/dashboard/sales"
     | "/auth/_auth/login"
     | "/auth/_auth/register"
     | "/auth/_auth/"
@@ -132,15 +166,33 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthAuthLoginRouteImport
       parentRoute: typeof AuthAuthRoute
     }
+    "/_layout/dashboard/sales": {
+      id: "/_layout/dashboard/sales"
+      path: "/dashboard/sales"
+      fullPath: "/dashboard/sales"
+      preLoaderRoute: typeof LayoutDashboardSalesRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    "/_layout/dashboard/analytics": {
+      id: "/_layout/dashboard/analytics"
+      path: "/dashboard/analytics"
+      fullPath: "/dashboard/analytics"
+      preLoaderRoute: typeof LayoutDashboardAnalyticsRouteImport
+      parentRoute: typeof LayoutRoute
+    }
   }
 }
 
 interface LayoutRouteChildren {
   LayoutIndexRoute: typeof LayoutIndexRoute
+  LayoutDashboardAnalyticsRoute: typeof LayoutDashboardAnalyticsRoute
+  LayoutDashboardSalesRoute: typeof LayoutDashboardSalesRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutIndexRoute: LayoutIndexRoute,
+  LayoutDashboardAnalyticsRoute: LayoutDashboardAnalyticsRoute,
+  LayoutDashboardSalesRoute: LayoutDashboardSalesRoute,
 }
 
 const LayoutRouteWithChildren =

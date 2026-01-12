@@ -4,6 +4,7 @@ import {
 	HomeOutlined,
 	LockOutlined,
 } from "@ant-design/icons"
+import { Link } from "@tanstack/react-router"
 import type { MenuProps } from "antd"
 import { DotOutlined } from "../ui/icons"
 
@@ -23,12 +24,12 @@ export const menuData: MenuItem[] = [
 			{
 				key: "/dashboard/sales",
 				icon: <DotOutlined />,
-				label: "Sales",
+				label: <Link to={"/dashboard/sales"}>Sales</Link>,
 			},
 			{
 				key: "/dashboard/analytics",
 				icon: <DotOutlined />,
-				label: "Analytics",
+				label: <Link to={"/dashboard/analytics"}>Analytics</Link>,
 			},
 			{
 				key: "/dashboard/ecommerce",
